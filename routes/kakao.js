@@ -6,11 +6,7 @@
 const express = require('express');
 const router = express.Router();
 
-const util = require('../services/util');
 const state = require('../services/state');
-
-let day = [];
-util.thisWeekDate(day);
 
 const checkUserKey = (req, res, next) => {
   if (req.body.user_key !== undefined) {
