@@ -3,6 +3,9 @@
  */
 'use strict';
 const req = require('request');
+const https = require('https');
+let agentOptions;
+let agent;
 
 exports.userState = async () => {
     const extractTodayState = await getTodayState();
@@ -12,13 +15,21 @@ exports.userState = async () => {
 
 const getTodayState = () => {
     return new Promise(resolve => {
-        req(
-            { method: 'GET',
-              uri: ''
-            },
-            function (error, response, body) {
-                resolve(body);
-            }
-        );
+        agentOptions = {
+            host: ''
+            , port: '11011'
+            , path: '/value'
+            , rejectUnauthorized: false
+        };
+
+        agent = new https.Agent(agentOptions);
+
+        req({
+            url: ""
+            , method: 'GET'
+            , agent: agent
+        }, function (err, resp, body) {
+            resolve(body);
+        });
     });
 };
