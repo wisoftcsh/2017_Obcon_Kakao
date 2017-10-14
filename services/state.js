@@ -16,16 +16,15 @@ exports.userState = async () => {
 const getTodayState = () => {
     return new Promise(resolve => {
         agentOptions = {
-            host: ''
+            host: 'localhost'
             , port: '11011'
             , path: '/value'
             , rejectUnauthorized: false
         };
 
         agent = new https.Agent(agentOptions);
-
         req({
-            url: ""
+            url: "https://localhost:11011/value"
             , method: 'GET'
             , agent: agent
         }, function (err, resp, body) {
